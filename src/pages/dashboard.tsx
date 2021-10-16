@@ -1,6 +1,6 @@
 import { Flex, SimpleGrid, Box, Text, theme } from "@chakra-ui/react";
 import dynamic from 'next/dynamic';
-import { SideBar } from "../components/Sidebar";
+import { Sidebar } from "../components/Sidebar";
 import { Header } from "../components/Header";
 
 const Chart = dynamic(() => import('react-apexcharts'), {
@@ -65,11 +65,11 @@ export default function Dashboard() {
       <Header />
 
       <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-        <SideBar />
+        <Sidebar />
 
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" align="flex-start">
           <Box
-            p="8"
+            p={["6", "8"]}
             bg="gray.800"
             borderRadius={8}
           >
@@ -77,7 +77,7 @@ export default function Dashboard() {
             <Chart type="area" options={options} series={series} height={160}/>
           </Box>
           <Box
-            p="8"
+            p={["6", "8"]}
             bg="gray.800"
             borderRadius={8}
           >
