@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Divider, VStack, HStack, SimpleGrid, Button } from "@chakra-ui/react";
 import { Input } from "../../components/Form/Input";
-import { SideBar } from "../../components/Form/Sidebar";
+import { SideBar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 
 export default function UserList() {
