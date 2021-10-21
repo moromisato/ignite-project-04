@@ -21,7 +21,7 @@ export default function UserList() {
   })
 
   async function handlePrefetchUser(userId) {
-    await queryClient.prefetchQuery(['user', userId], async () => {
+    await queryClient.prefetchQuery(['user',{ userId }], async () => {
       const response = await api.get(`users/${userId}`)
 
       return response.data;
@@ -92,7 +92,7 @@ export default function UserList() {
                             <Text fontSize="sm" color="gray.300">{user.email}</Text>
                           </Box>
                         </Td>
-                        { isWideVersion && <Td>{user.createdAt}</Td>}
+                        { isWideVersion && <Td>{user.created_at}</Td>}
                         { isWideVersion && <Td>
                           <Button
                             as="a"
