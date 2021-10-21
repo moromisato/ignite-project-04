@@ -4,10 +4,11 @@ import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import NextLink from "next/link";
-import { useUsers } from "../../services/hooks/useUsers";
+import { getUsers, useUsers } from "../../services/hooks/useUsers";
 import { useState } from "react";
 import { queryClient } from "../../services/queryClient";
 import { api } from "../../services/api";
+import { GetServerSideProps } from "next";
 
 
 export default function UserList() {
@@ -21,7 +22,7 @@ export default function UserList() {
   })
 
   async function handlePrefetchUser(userId: String) {
-    await queryClient.prefetchQuery(['user', userId], async () => {
+    await queryClient.prefetchQuery(['user', {userId}], async () => {
       const response = await api.get(`users/${userId}`)
 
       return response.data;
@@ -119,4 +120,18 @@ export default function UserList() {
       </Flex>
     </Box>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  
+  const { users, totalCount } = await getUsers(1)
+
+  console.log(users)
+
+  return {
+    props: {
+      users,
+      totalCount
+    }
+  }
 }
